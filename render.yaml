@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: exam-paper-generator-backend
+    env: python
+    plan: free
+    workingDirectory: backend        # <- backend folder is now the root for this service
+    buildCommand: |
+      python -m pip install --upgrade pip setuptools wheel
+      pip install --no-cache-dir -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: MONGODB_URI
+        fromDatabase:
+          name: mongodb
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_ALGORITHM
+        value: HS256
+      - key: JWT_ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "30"
+      - key: JWT_REFRESH_TOKEN_EXPIRE_DAYS
+        value: "7"
+
+  - type: web
+    name: exam-paper-generator-frontend
+    env: node
+    plan: free
+    workingDirectory: frontend       # <- frontend folder as root for this service
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://exam-paper-generator-backend.onrender.com
+
+databases:
+  - name: mongodb
+    databaseName: exam_paper_generator
+    user: exam_paper_generator_user
