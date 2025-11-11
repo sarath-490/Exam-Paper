@@ -218,27 +218,3 @@ deploy.bat
 ```
 
 **Then follow the step-by-step guide above to complete your deployment!** 🚀📚
-
-## 📝 License
-
-This project is private and proprietary.
-
-## 🆘 Support
-
-For issues or questions:
-1. Check the Render dashboard logs
-2. Verify environment variables are set correctly
-3. Check MongoDB Atlas connection status
-4. Review API endpoint responses
-
----
-
-**Happy Deploying! 🎉**
-*hello*
-__i am dinesh__
-## hello
-# Heading 1
-## Heading 2
-### Heading 3
-#### Heading 4
-~~strikethrough text~~
