@@ -33,10 +33,11 @@ class Settings(BaseSettings):
         return self.JWT_SECRET
     
     # Application
-    APP_NAME: str = "Intelligent Exam Paper Generator"
-    BACKEND_URL: str = "http://127.0.0.1:8000"
-    FRONTEND_URL: str = "http://localhost:5173"
-    FRONTEND_ALLOWED_ORIGINS: str = "http://localhost:5173,http://localhost:3000"
+    APP_NAME: str ="Intelligent Exam Paper Generator"
+    BACKEND_URL="https://exam-paper-backend.onrender.com"
+    FRONTEND_URL= "https://exam-paper-backend.onrender.com"
+    FRONTEND_ALLOWED_ORIGINS="https://exam-paper.onrender.com"
+
     
     @property
     def CORS_ORIGINS(self) -> list[str]:
