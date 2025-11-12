@@ -1,20 +1,17 @@
 services:
   - type: web
-    name: Exam-Paper-backend                 # You can rename this to your app name
+    name: Exam-Paper-backend
     env: python
-    region: oregon                   
-    plan: free                        
+    region: oregon
+    plan: free
 
     buildCommand: |
       pip install --upgrade pip setuptools wheel
       pip install -r requirements.txt
 
     startCommand: |
-      gunicorn app:app                # If Flask: "gunicorn app:app"
-                                      # If FastAPI: "gunicorn main:app -k uvicorn.workers.UvicornWorker"
+      gunicorn main:app -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT
 
     envVars:
       - key: PYTHON_VERSION
         value: 3.13
-      - key: PORT
-        value: 10000
